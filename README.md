@@ -9,13 +9,13 @@
 
 ##### Instructions to run the code:
 
--   Open folder with package.json file and run the command
+Open folder with package.json file and run the command
     -   npm install
--   After succesful installation of node packages, run the command
+After succesful installation of node packages, run the command
     -   node index
--   This will start your backend server on port 4000
--   Install MongoDB and add dummy data into ninjago collection, following the
+This will start your backend server on port 4000
+Install MongoDB and add dummy data into ninjago collection, following the
     NinjaSchema<br> and GeoSchema
--   Open localhost:4000/index.html and use the application
+Open localhost:4000/index.html and use the application
 
 
