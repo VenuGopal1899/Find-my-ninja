@@ -9,11 +9,9 @@
 
 ##### Instructions to run the code:
 
-Open folder with package.json file and run the command <br>
-    -   npm install
+Open folder with package.json file and run the command - npm install
 <br>
-After succesful installation of node packages, run the command<br>
-    -   node index
+After succesful installation of node packages, run the command - node index
 <br>
 This will start your backend server on port 4000<br>
 Install MongoDB and add dummy data into ninjago collection, following the
