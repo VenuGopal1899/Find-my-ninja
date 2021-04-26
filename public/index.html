@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Ninja</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1 class="title">Find my Ninja</h1>
+    <div id="homepage">
+        <h1>Hire a ninja in your area!</h1>
+        <div id="ninjas"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+
+
+    <!-- CREATE A REACT COMPONENT -->
+
+    <script type="text/babel">
+
+        class Ninjas extends React.Component{
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    firstTime: true,
+                    ninjas: []
+                };
+            }
+
+
+            render(){
+                this.handleSubmit = (e) => {
+                    e.preventDefault();
+                    var lng = this.refs.lng.value;
+                    var lat = this.refs.lat.value;
+
+                    fetch('/api/ninjas?lng='+ lng + '&lat=' + lat).then(data => {
+                        return data.json();
+                    }).then(data => {
+                        this.setState({
+                            ninjas : data,
+                            firstTime: false
+                        })
+                    });
+                }
+
+                var ninjas = this.state.ninjas;
+                if(ninjas.length && !this.state.firstTime) {
+                    ninjas = ninjas.map((ninja, index) => {
+                        return(
+                            <li key={index}>
+                                <span className={ninja.available ? "true": "false"}></span>
+                                <span className="name">{ninja.name}</span>
+                                <span className="rank">{ninja.rank}</span>
+                                <span className="dist">{Math.floor(ninja.distance/1000)} km</span>
+                            </li>
+                        )
+                    })
+                } else if(ninjas.length == 0 && !this.state.firstTime){
+                    return(
+                        <div id="ninj-container">
+                            <form id="search" onSubmit={this.handleSubmit}>
+                                <label for="">Enter your latitude :</label>
+                                <input type="text" ref="lat" placeholder="latitude" required />
+                                <label for="">Enter your longitude :</label>
+                                <input type="text" ref="lng" placeholder="longitude" required />
+                                <input type="submit" value="Find Ninjas"/>
+                            </form>
+                            <span className="no-ninjas">No Ninjas available..</span>
+                        </div>
+                    )
+                }
+
+
+                return(
+                    <div id="ninj-container">
+                        <form id="search" onSubmit={this.handleSubmit}>
+                            <label for="">Enter your latitude :</label>
+                            <input type="text" ref="lat" placeholder="latitude" required />
+                            <label for="">Enter your longitude :</label>
+                            <input type="text" ref="lng" placeholder="longitude" required />
+                            <input type="submit" value="Find Ninjas"/>
+                        </form>
+
+                        <ul>{ninjas}</ul>
+                    </div>
+                )
+            }
+        };
+
+        ReactDOM.render(<Ninjas/>, document.getElementById('ninjas'));
+
+
+    </script>
+
+</body>
+</html>
