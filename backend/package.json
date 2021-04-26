@@ -1,0 +1,27 @@
+{
+  "name": "Find-my-ninja",
+  "version": "1.0.0",
+  "description": "1.  A full stack application to locate Ninjas near you or any location you'd like to.\r 2.  You can hire them and make them go shopping for you or they can carry you to the market.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VenuGopal1899/Find-my-ninja.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VenuGopal1899/Find-my-ninja/issues"
+  },
+  "homepage": "https://github.com/VenuGopal1899/Find-my-ninja#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
